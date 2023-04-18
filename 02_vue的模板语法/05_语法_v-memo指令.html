@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-memo = "[name]">
+            <p>{{ name }}</p>
+            <p>{{ age }}</p>
+            <p>{{ height }}</p>
+        </div>
+
+        <button @click = "changeInfo">改变信息</button>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: "qinye",
+                    age: 20,
+                    height: 1.76
+                }
+            },
+            methods: {
+                changeInfo() {
+                    // this.name = "quirkybird"
+                    this.height = 1.78
+                    this.age = 30
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
