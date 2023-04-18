@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>个人信息</h2>
+        <!-- template不会出现在dom元素中，减少div的渲染，增加性能 -->
+        <!-- v-if是惰性的,如果判断是false,则这个dom元素直接不会被渲染 -->
+        <template v-if="Object.keys(info).length > 0">
+            <ul>
+                <li>姓名: {{ info.name }}</li>
+                <li>性别: {{ info.sex }}</li>
+            </ul>
+        </template>
+        <!-- else -->
+        <template v-else>
+            <h3>没有相关信息,info为空</h3>
+        </template>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    info: {name:"quirkybird", sex: "man"}
+                }
+            },
+            methods: {
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
