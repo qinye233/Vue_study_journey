@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- key要求是唯一的，通常是id -->
+            <!-- vue不会直接创建dom.而是先通过Vnode(virtual node)生成虚拟dom树，然后再转换为正式的dom，最后渲染到页面 -->
+            <!-- 虚拟dom实际上是一个JavaScript普通对象，所以虚拟dom其中之一的作用是方便代码跨平台使用 -->
+            <!-- 虚拟dom第二个作用就是添加key属性值后，Vue会使用diff算法,尽量提高未修改dom元素的复用，提高性能 -->
+            <li v-for="item in names" :key="item">{{ item }}</li>
+            <button @click="change">按钮</button>
+        </ul>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    names: ["abc", "cba", "baa", "bbb"]
+                }
+            },
+            methods: {
+                change(){
+                    this.names = this.names.map(item => item + "d")
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
