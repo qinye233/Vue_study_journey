@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        .cartTable {
+            /* 让相邻边框变为一个 */
+            border-collapse: collapse;
+        }
+        .cartTable thead{
+            background-color: #DCDCDC;
+        }
+        .cartTable th,td{
+            border: 0.5px solid #D3D3D3;
+            padding: 8px 16px;
+        }
+        .active{
+            background-color: #4682B4;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 购物车不为空情况 -->
+    <template v-if="info.length != 0">
+    <table class="cartTable">
+        <thead>
+        <tr>
+            <th></th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买价格</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <!-- 排他思想：选中更换背景颜色，使用class动态绑定，设置currentIndex，绑定点击事件，改变currentIndex，就可以让currentIndex与index相等，实现功能 -->
+        <tr :class="{active: index === currentIndex}" v-for="(item, index) in info" key="index" @click="changeActive(index)">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.bookName }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ formatPrice(item.price) }}</td>
+            <td>
+                <!-- 直接在这里判断count的值，避免再使用函数 -->
+                <button :disabled="item.count <= 1" @click="decrement(index)">-</button>
+                {{ item.count }}
+                <button @click="increment(index)">+</button>
+            </td>
+            <td><button @click="removeBtn(index)">移除</button></td>
+        </tr>
+    </table>
+    <h2>总价格: {{ formatPrice(calcPrice) }}</h2>
+    </template>
+    <!-- 购物车为空情况 -->
+    <template v-else>
+        <h2>当前购物车为空,请添加自己喜欢的书籍吧！</h2>
+    </template>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    info: [
+                        {id: 1, bookName:"《算法导论》", date: "2006-9", price: 85, count:1},
+                        {id: 2, bookName:"《UNIX编程艺术》", date: "2006-2", price: 59, count:1},
+                        {id: 3, bookName:"《编程珠玑》", date: "2008-10", price: 39, count:1},
+                        {id: 4, bookName:"《代码大全》", date: "2006-3", price: 128, count:1}
+                    ],
+                    currentIndex: -1
+                }
+            },
+            computed: {
+                calcPrice(){
+                    let sum = 0
+                    this.info.forEach(item => {
+                      sum += item.price * item.count
+                    });
+                    return sum;
+                }
+            },
+            methods: {
+                increment(index) {
+                    this.info[index].count++
+                },
+                decrement(index) {
+                        this.info[index].count--
+                },
+                removeBtn(index) {
+                    this.info.splice(index,1)
+                },
+                // 符号这样的经常使用的，可以封装，方便使用
+                formatPrice(price) {
+                    return "￥" + price
+                },
+                changeActive(index) {
+                    this.currentIndex = index
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

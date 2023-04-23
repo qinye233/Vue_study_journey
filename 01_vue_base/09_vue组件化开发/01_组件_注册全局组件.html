@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <product-item></product-item>
+        <product-item></product-item>
+        <product-item></product-item>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        /**
+         * 1.通过app.component（组件名称，组件的对象）
+         * 2.在App组件的模板中，可以直接使用product-item的组件
+         * */
+
+        //1.组件: App组件（根组件） 
+        const App = {}
+
+        // 2.创建App
+        const app = Vue.createApp(App)
+
+        // 注册一个全局组件
+        //命名方式 中间加一个横杠，或者大驼峰
+        app.component("product-item", { //第一个参数是组件名，第二个是组件内容(对象)
+            template: `<div>
+                        <div>商品名称</div>
+                        <div>商品价格</div>
+                        <div>商品描述</div>
+                        </div>`
+        })
+        // 挂载app
+        app.mount("#app")
+    </script>
+</body>
+</html>

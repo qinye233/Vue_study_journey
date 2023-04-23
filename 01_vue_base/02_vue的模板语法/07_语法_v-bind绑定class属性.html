@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 基本绑定class属性 -->
+        <h2 :class="classes"></h2>
+        <!-- 动态class可以写对象语法 -->
+        <!-- <button :class="isActive ? 'active' : ''" @click="switchColor">点击一下</button> -->
+       <!-- 对象语法的基本使用  -->
+        <button :class="{ active: isActive }" @click="switchColor">点击一下</button>
+        <!-- 动态class可以写数组方法 和原class不会相互影响 -->
+        <button class="ccc" :class="['abc','cba',{active: isActive}]" @click="switchColor">点我吧</button>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    classes: "abc cba cda",
+                    isActive: false
+                }
+            },
+            methods: {
+                switchColor(){
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

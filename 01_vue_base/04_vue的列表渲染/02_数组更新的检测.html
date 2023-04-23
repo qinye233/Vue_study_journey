@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in names">{{ item }}</li>
+            <button @click="change">按钮</button>
+        </ul>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    names: ["abc", "cba", "baa", "bbb"]
+                }
+            },
+            methods: {
+                change(){
+                    // 1.直接将数组修改为一个新的数组
+                    // this.names = ["ccc"]
+
+                    // 2.通过一些数组的方法，修改数组中的元素
+                    // this.names.push("qinye")
+                    // this.names.pop()
+                    // this.names.splice(2, 1, "qinye")
+                    // this.names.sort()
+                    //this.names.reverse()
+                    
+                    //下面这个不支持 
+                    // this.names.forEach(item => {
+                    //     item = item + "qwertytityuouy"
+                    // });
+
+                    // 不修改原数组方法的方法不能侦听（watch）
+                    this.names = this.names.map(item => item + "d")
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

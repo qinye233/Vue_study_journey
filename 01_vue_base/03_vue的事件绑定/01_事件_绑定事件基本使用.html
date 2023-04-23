@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height:200px;
+            width: 200px;
+            margin-right: 20px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-on的基本使用 -->
+        <div class="box" v-on:click="divClick" :style="{backgroundColor: bgColor}"></div>
+        <!-- 语法糖简写 -->
+        <div class="box" @click="divClick" :style="{backgroundColor: bgColor}"></div>
+        <!-- 绑定其它事件 -->
+        <div class="box" @mousemove="divMouseMove" :style="{backgroundColor: bgColor}"></div>
+        <!-- 多个事件监听 -->
+        <!-- <div class="box" @mousemove="divMouseMove" @click="divClick" :style="{backgroundColor: bgColor}"></div> -->
+        <!-- 另一种想法 -->
+        <div class="box" v-on="{mousemove:divMouseMove, click:divClick}" :style="{backgroundColor: bgColor}"></div>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    bgColor: "green"
+                }
+            },
+            methods: {
+                divClick(){
+                    this.bgColor = "orange"
+                },
+                divMouseMove(){
+                    console.log("Mouse move now!!!")
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

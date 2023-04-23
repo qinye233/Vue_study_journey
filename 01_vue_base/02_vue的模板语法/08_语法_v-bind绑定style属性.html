@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 动态绑定style,在后面跟上对象类型 -->
+        <div :style="{ color: fontColor, fontSize: fontSize }">Vue journey so happy!</div>
+        <!-- 动态绑定属性，这个属性是一个对象 -->
+        <div :style="objStyle">Vue journey so happy!</div>
+        <!-- style动态绑定的数组语法 -->
+        <div :style="[objStyle,{background: 'yellow'}]">Vue journey so happy!</div>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    fontColor: 'red',
+                    fontSize: '20px',
+                    objStyle:{
+                        color: "blue",
+                        fontSize: "25px"
+                    }
+
+                }
+            },
+            methods: {
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

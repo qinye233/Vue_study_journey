@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ fullName }}</h2>
+        <h2>{{ scoreLevel }}</h2>
+        <h2>{{ reverseInfo }}</h2>
+    </div>
+    <script src="../lib/vue3.2.47.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    // 字符串拼接
+                    firstName: "qinye",
+                    lastName: "quirkybird",
+                    // 判断及格否
+                    score: 60,
+                    // 字符串反转
+                    info: "my name is quirkybird"
+                }
+            },
+            // 对于包含响应式数据的复杂逻辑，你都应该使用计算属性
+            computed:{
+                fullName(){
+                    return this.firstName + this.lastName 
+                },
+                scoreLevel(){
+                    return this.score >= 60 ? "及格" : "不及格"
+                },
+                reverseInfo(){
+                    return this.info.split(" ").reverse().join(" ")
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
