@@ -1,7 +1,7 @@
 <template>
     <div class="app">
-        <tab-Control :type-name="['衣服', '鞋子', '裤子']"
-        @tab-item-click="tabItemClick"></tab-Control>
+        <tab-control :type-name="['衣服', '鞋子', '裤子']"
+        @tab-item-click="tabItemClick"></tab-control>
         <h1>{{ indexPage }}</h1>
     </div>
 </template>

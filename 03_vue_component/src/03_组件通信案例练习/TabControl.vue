@@ -13,6 +13,7 @@
     export default{
         props: {
          typeName: {
+          type: Array,
           default: () => {
            return ["*", "*", "*"]
                 }
