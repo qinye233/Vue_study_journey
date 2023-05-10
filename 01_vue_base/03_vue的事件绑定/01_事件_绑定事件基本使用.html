@@ -24,7 +24,7 @@
         <div class="box" @mousemove="divMouseMove" :style="{backgroundColor: bgColor}"></div>
         <!-- 多个事件监听 -->
         <!-- <div class="box" @mousemove="divMouseMove" @click="divClick" :style="{backgroundColor: bgColor}"></div> -->
-        <!-- 另一种想法 -->
+        <!-- 另一种写法 -->
         <div class="box" v-on="{mousemove:divMouseMove, click:divClick}" :style="{backgroundColor: bgColor}"></div>
     </div>
     <script src="../lib/vue3.2.47.js"></script>
