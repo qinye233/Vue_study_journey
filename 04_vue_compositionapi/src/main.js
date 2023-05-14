@@ -1,4 +1,4 @@
 import { createApp } from 'vue'
-import App from './04_setup中toRefs的使用/App.vue'
+import App from './10_setup-Hooks练习/App.vue'
 
 createApp(App).mount('#app')
