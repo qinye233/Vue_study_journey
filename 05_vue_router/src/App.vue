@@ -3,7 +3,7 @@
     <router-link to="/home" active-class="active">home</router-link>
     <router-link to="/about" active-class="active">about</router-link>
     <router-link to="/user/999" active-class="active">user</router-link>
-    
+    <router-link to="/order" active-class="active">oerder</router-link>
     <!-- 编程式导航 -->
     <button @click="homePageClick">家</button>
     <button @click="aboutPageClick">关于</button>
